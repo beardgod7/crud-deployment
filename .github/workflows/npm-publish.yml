@@ -1,0 +1,45 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main  # Define your main branch name here
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14  # Use the version you need
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Check if tests passed
+        id: test-status
+        run: |
+          if [ -f test-failure-marker ]; then
+            echo "::set-output name=failure::true"
+          else
+            echo "::set-output name=failure::false"
+          fi
+
+      - name: Prevent merging if tests failed
+        if: steps.test-status.outputs.failure == 'false'
+        run: |
+          echo "Tests passed, the code can be merged."
+        else
+          echo "Tests failed. Do not merge code into main branch."
+          exit 1  # Exit with a non-zero status code to indicate failure
+
+
+
