@@ -1,45 +1,37 @@
-name: CI/CD Workflow
+name: Node.JS CI/CD
 
 on:
   push:
-    branches:
-      - main  # Define your main branch name here
+    branches: [main]
 
 jobs:
-  build:
+  
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    strategy:
+      matrix:
+        node-version: [14.x]
 
-      - name: Setup Node.js
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.JS ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 14  # Use the version you need
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
-
-      - name: Check if tests passed
-        id: test-status
+          node-version: ${{ matrix.node-version }}
+      
+      - name: NPM install, build and test
         run: |
-          if [ -f test-failure-marker ]; then
-            echo "::set-output name=failure::true"
-          else
-            echo "::set-output name=failure::false"
-          fi
-
-      - name: Prevent merging if tests failed
-        if: steps.test-status.outputs.failure == 'false'
-        run: |
-          echo "Tests passed, the code can be merged."
-        else
-          echo "Tests failed. Do not merge code into main branch."
-          exit 1  # Exit with a non-zero status code to indicate failure
-
+          npm install
+          npm test
+        env:
+          DBHOST: ${{ secrets.DBHOST }}  
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}  
+          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
 
 
