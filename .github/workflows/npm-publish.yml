@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [12.x]
 
     steps:
       - name: Checkout
@@ -30,8 +30,9 @@ jobs:
           npm install
           npm test
         env:
-          DBHOST: ${{ secrets.DBHOST }}  
-          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}  
-          JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+          DB_URL: ${{ secrets.DB_URL }}  
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}  
+          JWT_EXPIRES: ${{ secrets.JWT_EXPIRES }}
+          PORT: ${{ secrets.PORT }}
 
 
