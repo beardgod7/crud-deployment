@@ -2,9 +2,9 @@
   "name": "neww",
   "version": "1.0.0",
   "description": "crud api",
-  "main": "server.js",
+  "main": "server.mjs",
   "scripts": {
-    "start-dev": "cross-env NODE_ENV=development nodemon server.js",
+    "start-dev": "cross-env NODE_ENV=development nodemon server.mjs",
     "test": "cross-env NODE_ENV=test mocha --recursive --exit --timeout 10000"
 
   },
