@@ -31,3 +31,5 @@ app.use("/api/v2/user", user)
 app.listen(process.env.PORT,()=>{
     console.log( `app is running on http://localhost:${process.env.PORT}`)
 })
+
+module.exports = app
