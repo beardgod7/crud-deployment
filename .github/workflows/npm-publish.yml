@@ -30,9 +30,7 @@ jobs:
           npm install
           npm test
         env:
-          DB_URL: ${{ secrets.DB_URL }}  
-          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}  
-          JWT_EXPIRES: ${{ secrets.JWT_EXPIRES }}
-          PORT: ${{ secrets.PORT }}
+          DB_URL: mongodb+srv://eric:francis1122@cluster1.kagkqfh.mongodb.net/?retryWrites=true&w=majority
+          PORT: 79
 
 
