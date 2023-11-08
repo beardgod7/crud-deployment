@@ -32,5 +32,14 @@ jobs:
         env:
           DB_URL: mongodb+srv://eric:francis1122@cluster1.kagkqfh.mongodb.net/?retryWrites=true&w=majority
           PORT: 7545
+          JWT_SECRET_KEY : "2FtynxXT1NTf2K1Mo4i6AOvtdIPJKIRTY",
+          JWT_EXPIRES : 2d,
+          SMPT_HOST: smtp.gmail.com,
+          SMPT_PORT: 465,
+          SMPT_SERVICE: gmail,
+          SMPT_PASSWORD: xksycvxukjntzucb,
+          SMPT_MAIL: nwaokefrancis@gmail.com,
+          ACTIVATION_SECRET:  'PWj0fI#&DsZY9w$8tHe11*yr9F45K*j2xj&fceGZ!tEnMNZcEN'
+
 
 
