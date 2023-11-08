@@ -30,16 +30,16 @@ jobs:
           npm install
           npm test
         env:
-          DB_URL: mongodb+srv://eric:francis1122@cluster1.kagkqfh.mongodb.net/?retryWrites=true&w=majority
-          PORT: 7545
-          JWT_SECRET_KEY : "2FtynxXT1NTf2K1Mo4i6AOvtdIPJKIRTY"
-          JWT_EXPIRES : 2d
-          SMPT_HOST: smtp.gmail.com
-          SMPT_PORT: 465
+          DB_URL: ${{ secrets.DB_URL }} 
+          PORT: 7549
+          JWT_SECRET_KEY : ${{ secrets.JWT_SECRET_KEY }} 
+          JWT_EXPIRES : ${{ secrets.JWT_EXPIRES }} 
+          SMPT_HOST: ${{ secrets.SMPT_HOST }} 
+          SMPT_PORT: ${{ secrets.SMPT_PORT }} 
           SMPT_SERVICE: gmail
-          SMPT_PASSWORD: xksycvxukjntzucb
-          SMPT_MAIL: nwaokefrancis@gmail.com
-          ACTIVATION_SECRET:  'PWj0fI#&DsZY9w$8tHe11*yr9F45K*j2xj&fceGZ!tEnMNZcEN'
+          SMPT_PASSWORD: ${{ secrets.SMPT_PASSWORD }} 
+          SMPT_MAIL: ${{ secrets.SMPT_MAIL }} 
+          ACTIVATION_SECRET: ${{ secrets.ACTIVATION_SECRET }} 
 
 
 
