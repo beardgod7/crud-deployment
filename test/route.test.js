@@ -24,4 +24,16 @@ describe('User Registration and Activation Routes', () => {
       })
   });
   
+  it('should for when fields are not found', (done) => {
+    chai
+      .request(server)
+      .post("/api/v2/user/create-user")
+      .send({})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body).to.have.property('message').to.include('All required fields must be provided');
+        done(); // Call done to indicate test completion
+      })
+  });
+
 })

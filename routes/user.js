@@ -12,11 +12,17 @@ const { isAuthenticated, isAdmin } = require("../middleware/auth");
 // create user
 router.post("/create-user", async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password 
+    } = req.body;
+
+    if ( !name||!email || !password ) {
+      return res.status(400).json({ message: 'All required fields must be provided.' });
+    }
+
     const userEmail = await User.findOne({ email });
 
     if (userEmail) {
-      return next(new ErrorHandler("User already exists", 400));
+      return res.status(400).json({ message: 'user already exists' });
     };
 
     const user = {
