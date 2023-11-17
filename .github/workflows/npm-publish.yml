@@ -16,12 +16,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
       - name: Use Node.JS ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       
@@ -41,5 +41,14 @@ jobs:
           SMPT_MAIL: ${{ secrets.SMPT_MAIL }} 
           ACTIVATION_SECRET: ${{ secrets.ACTIVATION_SECRET }} 
 
+  deploy:
+    name: Deploy
+    needs: [test] 
+    runs-on: ubuntu-latest
 
-
+    steps: 
+      - name: Deploy to production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.SERVICE_ID }} 
+          api-key: ${{ secrets.RENDER_API_KEY }} 
