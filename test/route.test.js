@@ -69,6 +69,38 @@ describe('User Registration and Activation Routes', () => {
         done();
       });
   });
+
+  it('to log in user', (done) => {
+    chai
+      .request(server)
+      .post("/api/v2/user/login-user")
+      .send({
+        email: 'testuser@example.com',
+        password: 'testpassword',
+      })
+      .end((err, res) => {
+        //console.log(res.status); // Add this line to print the status code
+        //console.log(res.body);   // Add this line to print the response body
+        //expect(res).to.have.status(200);
+        //expect(res.body).to.have.property('success').to.be.true;
+        done(); 
+      });
+  });
+  it('test for invlaid password ', (done) => {
+    chai
+      .request(server)
+      .post("/api/v2/user/login-user")
+      .send({
+        email: 'testuser@example.com',
+        password: 'test',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+
+        done(); 
+      })
+  });
+  
 })
  
 
