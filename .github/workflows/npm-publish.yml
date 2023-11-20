@@ -31,7 +31,7 @@ jobs:
           npm test
         env:
           DB_URL: ${{ secrets.DB_URL }} 
-          PORT: 9157
+          PORT: 3000
           JWT_SECRET_KEY : ${{ secrets.JWT_SECRET_KEY }} 
           JWT_EXPIRES : ${{ secrets.JWT_EXPIRES }} 
           SMPT_HOST: ${{ secrets.SMPT_HOST }} 
